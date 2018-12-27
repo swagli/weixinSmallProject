@@ -1,0 +1,333 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 地图容器 -->
+  <view class="map_box">
+    <map id='my_map' 
+    style='height:{{mapHeight}}px' 
+    longitude='{{options.lng}}' 
+    latitude='{{options.lat}}' 
+    markers="{{markers}}" 
+    polyline="{{polyline}}" 
+    scale="{{mapScale}}" 
+    include-points="{{includePoints}}"
+    enable-zoom>
+    <cover-view class='map_view_user'>
+      <cover-image class='user_reset' src='../images/icon_reset.png' bindtap='resetMessages'></cover-image>
+      <cover-image class='user_center' src='../images/user_center.png' bindtap='userCenter'></cover-image>
+    </cover-view>
+    <cover-view class='open_setting' wx:if="{{showOpenSting}}" bindtap="openSetting">打开授权定位</cover-view>
+    <cover-view class='map_bottom_box'>
+      <cover-view class='map_bottom'>
+        <cover-image class='map_bt_not' src='../images/icon_notice.png'></cover-image>
+        <cover-view class="help_pick {{helpMePickUp?'':'click_active'}}" bindtap='helpMeSend'>
+          帮我送
+        </cover-view>
+        <cover-view class="help_pick {{helpMePickUp?'click_active':''}}" bindtap='helpMePick'>
+          帮我取
+        </cover-view>
+        <cover-view class='one_call' bindtap='oneButtonCall'>
+          便民服务
+        </cover-view>
+         <cover-view class='cheap_life' bindtap='openCheapLife'>
+          <cover-image class='map_bt_shop' src='../images/icon_shop.png'></cover-image>
+          <cover-view class='shop_con'>惠生活</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+    </map>
+  </view>
+  
+  <!-- 内容部分 -->
+  <view class='main'>
+    <!-- 发/取件地址 -->
+    <view class='main_con_box'>
+      <!-- 信息展示 -->
+      <view class='content_box' style="{{!orderMessArr.starter.addressName?'padding-top:10rpx;':''}}">
+        <view class="messages_box" bindtap='openToStart'>
+          <view class='message_title'>
+            <text wx:if="{{!helpMePickUp}}">发</text>
+            <text wx:if="{{helpMePickUp}}">取</text>
+          </view>
+          <view class='messages_content' wx:if="{{orderMessArr.starter.poiName||orderMessArr.starter.addressName}}">
+            <view class='location_poiname' wx:if="{{orderMessArr.starter.poiName}}">{{orderMessArr.starter.poiName}}</view>
+            <view class='location_poiname' wx:else>{{orderMessArr.starter.addressName}}</view>
+            <view class='user_info' wx:if="{{orderMessArr.starter.phonenumber}}">
+              {{orderMessArr.starter.name}} {{orderMessArr.starter.phonenumber}}
+            </view>
+            <view class='user_info' wx:else style='color:#e4393c;font-size:28rpx;'>完善发件信息</view>
+          </view>
+          <view class='messages_content message_item' wx:else>
+            <text wx:if="{{!helpMePickUp}}">从哪里发出去</text>
+            <text wx:if="{{helpMePickUp}}">从哪里取东西</text>
+          </view>
+        </view>
+        <view url="" class="offten_box">
+          <view class='often_btn' bindtap='openToOftenStart'>常用</view>
+        </view>
+      </view>
+      <!-- 发件快捷选择 -->
+      <view class='quick_choose' wx:if="{{oftenStartArr.length > 0}}">
+          <icon class='record_icon' type="waiting" size="17" color="#bbbbbb"></icon>
+          <!-- <image src="../images/ico-list.png" mode="aspectFit" class='record_icon'></image> -->
+          <view class="choose_default choose_1  {{clickNumber.clickStartIndex == 1 ? 'choose_active':''}}" 
+          wx:if="{{oftenStartArr[0].starter.name}}" 
+          bindtap='ChooseQuickOftenStart' 
+          data-clickindex="1" 
+          data-startquick="{{oftenStartArr[0]}}">
+              <view class='quick_title' wx:if="{{oftenStartArr[0].starter.poiName}}">{{oftenStartArr[0].starter.poiName}}</view>
+              <view class='quick_title' wx:else>{{oftenStartArr[0].starter.addressName}}</view>
+              <text class='quick_content'>{{oftenStartArr[0].starter.name}} {{oftenStartArr[0].starter.phonenumber}}</text>
+          </view>
+          <view class="choose_default choose_2 {{clickNumber.clickStartIndex == 2 ? 'choose_active':''}}" 
+          wx:if="{{oftenStartArr[1].starter.name}}" 
+          bindtap='ChooseQuickOftenStart' 
+          data-clickindex="2" 
+          data-startquick="{{oftenStartArr[1]}}">
+              <view class='quick_title' wx:if="{{oftenStartArr[1].starter.poiName}}">{{oftenStartArr[1].starter.poiName}}</view>
+              <view class='quick_title' wx:else>{{oftenStartArr[1].starter.addressName}}</view>
+              <text class='quick_content'>{{oftenStartArr[1].starter.name}} {{oftenStartArr[1].starter.phonenumber}}</text>
+          </view>
+      </view>
+      <view class='quick_choose quick_choose_null' wx:else>
+          <icon class='record_icon' type="waiting" size="17" color="#bbbbbb"></icon>
+          <text class="null_arr">暂无发件记录</text>
+      </view>
+    </view>
+    <!-- 收件地址 -->
+    <view class='main_con_box'>
+      <!-- 收件信息 -->
+      <view class='content_box receiver_con_box' style="{{!orderMessArr.receiver.addressName?'padding-top:10rpx;':''}}">
+        <view url="" class="messages_box" bindtap='openToReceive'>
+          <view class='message_title message_title_receive'>收</view>
+          <view class='messages_content' wx:if="{{orderMessArr.receiver.poiName||orderMessArr.receiver.addressName}}">
+            <view class='location_poiname'wx:if="{{orderMessArr.receiver.poiName}}">{{orderMessArr.receiver.poiName}}</view>
+            <view class='location_poiname'wx:else>{{orderMessArr.receiver.addressName}}</view>
+            <view class='user_info' wx:if="{{orderMessArr.receiver.phonenumber}}">{{orderMessArr.receiver.name}} {{orderMessArr.receiver.phonenumber}}</view>
+            <view class='user_info' wx:else style='color:#e4393c;font-size:28rpx;'>完善收件信息</view>
+          </view>
+          <view class='messages_content message_item' wx:else>
+            要送到哪儿去
+          </view>
+        </view>
+        <view url="" class="offten_box">
+          <view class='often_btn often_btn_receive' bindtap='openToOftenReceive'>常用</view>
+        </view>
+      </view>
+      <!-- 收件快捷选择 -->
+      <view class='quick_choose' wx:if="{{oftenReceiveArr.length > 0}}">
+          <icon class='record_icon' type="waiting" size="17" color="#bbbbbb"></icon>
+          <!-- <image src="../images/ico-list.png" mode="aspectFit" class='record_icon'></image> -->
+          <view class="choose_default choose_1  {{clickNumber.clickReceiveIndex == 1 ? 'choose_active':''}}" 
+          wx:if="{{oftenReceiveArr[0].receiver.name}}" 
+          bindtap='ChooseQuickOftenReceive' 
+          data-clickindex="1" 
+          data-receivequick="{{oftenReceiveArr[0]}}">
+              <view class='quick_title' wx:if="{{oftenReceiveArr[0].receiver.poiName}}">{{oftenReceiveArr[0].receiver.poiName}}</view>
+              <view class='quick_title' wx:else>{{oftenReceiveArr[0].receiver.addressName}}</view>
+              <text class='quick_content'>{{oftenReceiveArr[0].receiver.name}} {{oftenReceiveArr[0].receiver.phonenumber}}</text>
+          </view>
+          <view class="choose_default choose_2 {{clickNumber.clickReceiveIndex == 2 ? 'choose_active':''}}" 
+          wx:if="{{oftenReceiveArr[1].receiver.name}}" 
+          bindtap='ChooseQuickOftenReceive' 
+          data-clickindex="2" 
+          data-receivequick="{{oftenReceiveArr[1]}}">
+              <view class='quick_title' wx:if="{{oftenReceiveArr[1].receiver.poiName}}">{{oftenReceiveArr[1].receiver.poiName}}</view>
+              <view class='quick_title' wx:else>{{oftenReceiveArr[1].receiver.addressName}}</view>
+              <text class='quick_content'>{{oftenReceiveArr[1].receiver.name}} {{oftenReceiveArr[1].receiver.phonenumber}}</text>
+          </view>
+      </view>
+      <view class='quick_choose quick_choose_null' wx:else>
+          <icon class='record_icon' type="waiting" size="17" color="#bbbbbb"></icon>
+          <text class="null_arr">暂无收件记录</text>
+      </view>
+    </view>
+    <!-- 宣传图 -->
+    <view bindtap='openCheapLife' wx:if="{{windowInfo.windowHeight < 550 && !isShowItem}}">
+      <image class='image_show' src='/images/SEO/banner_hui.png' mode='widthFix'></image>
+    </view>
+    <!-- 物品信息 -->
+    <view class='main_con_box' wx:if="{{isShowItem}}">
+      <!-- 物品信息 -->
+      <view class='content_box receiver_con_box' style="{{!orderMessArr.item.type?'padding-top:10rpx;':''}}">
+        <view url="" class="messages_box" bindtap='openToItem'>
+          <view class='message_title message_title_item'>物</view>
+          <view class='messages_content' style='line-height:1.2;' wx:if="{{orderMessArr.item.type}}">
+            <view class='location_poiname'>{{orderMessArr.item.type}}</view>
+            <view class='user_info item_info'>
+              <view class='item_type'>{{orderMessArr.item.sizeValue}}</view>
+              <view class='item_vehicle' wx:if="{{orderMessArr.vehicle}}">{{orderMessArr.item.vehicleVal}}</view>
+              <view class='item_vehicle' wx:else>默认交通工具</view>
+              <view class='item_weight'><text class='item_weight_number'>{{orderMessArr.item.weight}}</text>kg</view>
+            </view>
+          </view>
+          <view class='messages_content message_item' wx:else>
+              送什么物品呢
+          </view>
+        </view>
+        <view url="" class="offten_box">
+          <view class='often_btn often_btn_receive' bindtap='openToOftenItem'>常用</view>
+        </view>
+      </view>
+      <!-- 物品快捷选择 -->
+        <view class='quick_choose' wx:if="{{oftenItemArr.length > 0}}">
+            <icon class='record_icon' type="waiting" size="17" color="#bbbbbb"></icon>
+            <!-- <image src="../images/ico-list.png" mode="aspectFit" class='record_icon'></image> -->
+            <view class="choose_default choose_item_def choose_1  {{clickNumber.clickItemIndex == 1 ? 'choose_active':''}}" 
+            wx:if="{{oftenItemArr[0].item.itemType}}" 
+            bindtap='ChooseQuickOftenItem' 
+            data-clickindex="1" 
+            data-itemquick="{{oftenItemArr[0]}}">
+                <view class='quick_title' wx:if="{{oftenItemArr[0].item.itemType}}">{{oftenItemArr[0].item.itemType}}</view>
+                <view class='quick_title' wx:else>{{oftenItemArr[0].item.itemName}}</view>
+                <view class='quick_content'>
+                  <view>
+                    <text wx:if="{{oftenItemArr[0].item.itemSize=='SMALL'}}">小型件</text>
+                    <text wx:if="{{oftenItemArr[0].item.itemSize=='MIDDLE'}}">中型件</text>
+                    <text wx:if="{{oftenItemArr[0].item.itemSize=='BIG'}}">大型件</text>
+                    <text wx:if="{{oftenItemArr[0].item.itemSize=='VERY_BIG'}}">小型货运</text>
+                    <text wx:if="{{oftenItemArr[0].item.itemSize=='HUGE'}}">中型货运</text>
+                  </view>
+                  <view>
+                    <text wx:if="{{oftenItemArr[0].vehicle == 'ELECTRIC_BICYCLE'}}">电动车</text>
+                    <text wx:elif="{{oftenItemArr[0].vehicle == 'CAR'}}">小汽车</text>
+                    <text wx:elif="{{oftenItemArr[0].vehicle == 'VAN'}}">面包车</text>
+                    <text wx:elif="{{oftenItemArr[0].vehicle == 'MOBILE_TRICYCLE'}}">机动三轮车</text>
+                    <text wx:elif="{{oftenItemArr[0].vehicle == 'TRUCK'}}">小型货车</text>
+                    <text wx:elif="{{oftenItemArr[0].vehicle == 'MIDDLE_TRUCK'}}">中型货车</text>
+                    <text wx:else>默认交通工具</text>
+                  </view>
+                  <view>{{oftenItemArr[0].item.itemWeight}}kg</view>
+                </view>
+            </view>
+            <view class="choose_default choose_item_def choose_2 {{clickNumber.clickItemIndex == 2 ? 'choose_active':''}}" 
+            wx:if="{{oftenItemArr[1].item.itemType}}" 
+            bindtap='ChooseQuickOftenItem' 
+            data-clickindex="2" 
+            data-itemquick="{{oftenItemArr[1]}}">
+                <view class='quick_title' wx:if="{{oftenItemArr[1].item.itemType}}">{{oftenItemArr[1].item.itemType}}</view>
+                <view class='quick_title' wx:else>{{oftenItemArr[1].item.itemName}}</view>
+                <view class='quick_content'>
+                  <view>
+                    <text wx:if="{{oftenItemArr[1].item.itemSize=='SMALL'}}">小型件</text>
+                    <text wx:if="{{oftenItemArr[1].item.itemSize=='MIDDLE'}}">中型件</text>
+                    <text wx:if="{{oftenItemArr[1].item.itemSize=='BIG'}}">大型件</text>
+                    <text wx:if="{{oftenItemArr[1].item.itemSize=='VERY_BIG'}}">小型货运</text>
+                    <text wx:if="{{oftenItemArr[1].item.itemSize=='HUGE'}}">中型货运</text>
+                  </view>
+                  <view>
+                    <text wx:if="{{oftenItemArr[1].vehicle == 'ELECTRIC_BICYCLE'}}">电动车</text>
+                    <text wx:elif="{{oftenItemArr[1].vehicle == 'CAR'}}">小汽车</text>
+                    <text wx:elif="{{oftenItemArr[1].vehicle == 'VAN'}}">面包车</text>
+                    <text wx:elif="{{oftenItemArr[1].vehicle == 'MOBILE_TRICYCLE'}}">机动三轮车</text>
+                    <text wx:elif="{{oftenItemArr[1].vehicle == 'TRUCK'}}">小型货车</text>
+                    <text wx:elif="{{oftenItemArr[1].vehicle == 'MIDDLE_TRUCK'}}">中型货车</text>
+                    <text wx:else>默认交通工具</text>
+                  </view>
+                  <view>{{oftenItemArr[1].item.itemWeight}}kg</view>
+                </view>
+            </view>
+        </view>
+        <view class='quick_choose quick_choose_null' wx:else>
+          <icon class='record_icon' type="waiting" size="17" color="#bbbbbb"></icon>
+          <text class="null_arr">暂无物品记录</text>
+      </view>
+    </view>
+    <view wx:if="{{isShowPrice === true}}">
+      <!-- 发件类型 -->
+      <view class="order_type_box">
+          <radio-group class="radio-group" bindchange="radioTypeChange">
+              <radio class="radio" wx:for-items="{{orderTypeItems}}" wx:key="name" data-changeType="{{item.name}}" value="{{item.name}}" checked="{{item.checked}}">
+                  <text>{{item.value}}</text>
+              </radio>
+          </radio-group>
+      </view>
+      <!-- 预约时间显示 -->
+      <block wx:if="{{orderMessArr.orderType=='AppointmentOrder'||orderMessArr.orderType=='AdvancedAppointmentOrder'}}">
+        <picker class='dateTime_box'
+        mode="multiSelector" 
+        value="{{startDetaTime}}" 
+        range="{{dateTimeArray}}" 
+        bindchange="changeStartTime" 
+        bindcolumnchange="changeStartTimeColumn">
+          <view class='payment'>
+            <view class="remark_tit">预约取件时间</view>
+            <text wx:if="{{orderMessArr.fetchTime}}">{{orderMessArr.fetchTimeVal}}</text>
+            <text wx:else>--请选择--</text>
+          </view>
+        </picker>
+        <picker class='dateTime_box fetch_box' wx:if="{{orderMessArr.orderType=='AdvancedAppointmentOrder'}}" 
+        mode="multiSelector" 
+        value="{{startDetaTime}}" 
+        range="{{dateTimeArray}}" 
+        bindchange="changeEndTime" 
+        bindcolumnchange="changeEndTimeColumn">
+          <view class='payment'>
+            <view class="remark_tit">预约送件时间</view>
+            <text wx:if="{{orderMessArr.sendTime}}">{{orderMessArr.sendTimeVal}}</text>
+            <text wx:else>--请选择--</text>
+          </view>
+        </picker>
+      </block>
+      <!-- 备注信息 -->
+      <view class='remark_box' bindtap='openToRemark'>
+        <view class="remark_tit">备注</view>
+        <view class='remark_cont' wx:if="{{orderMessArr.item.remark}}">{{orderMessArr.item.remark}}</view>
+        <view class='remark_cont' wx:else>无备注信息</view>
+      </view>
+      <!-- 红包及优惠 -->
+      <view class='discount_box' bindtap='openToCandiscount'>
+        <view class="discount_tit">红包</view>
+        <view class='discount_cont' wx:if="{{!orderMessArr.couponId && !orderMessArr.couponNumber}}">暂无红包或优惠</view>
+        <view class='discount_cont discount_number' wx:elif="{{!orderMessArr.couponId && orderMessArr.couponNumber}}">{{orderMessArr.couponNumber}} 个可用红包</view>
+        <view class='discount_cont discount_number' wx:elif="{{orderMessArr.couponId && orderMessArr.couponPre>=0}}">使用红包 - {{orderMessArr.couponPre}} 元             </view>
+        <view class='discount_cont' wx:else>暂无红包或优惠</view>
+      </view>
+      <!-- 支付方式 -->
+      <view class='payment_box'>
+        <view class='payment payment_balance' data-value='CUSTOMER_RECHARGE' data-index='0' bindtap='radioPaymentChange'>
+          <view class="remark_tit">余额支付</view>
+          <view wx:if="{{AccountInfo.moneyRemain>=0}}">
+            <text style="color:#4183c4;font-size:12px;margin-left:16px;" wx:if="{{AccountInfo.moneyRemain>=orderMessArr.price}}">可用余额 {{AccountInfo.moneyRemain}} 元</text>
+            <text style="color:#ff6600;font-size:12px;margin-left:16px;" wx:else>（余额不足）{{AccountInfo.moneyRemain}} 元</text>
+          </view>
+           <icon class='radio_balance' 
+           type="success" 
+           size="18" 
+           color="{{clickPayIndex == 0?'#08b036':'#eeeeee'}}"></icon>
+        </view>
+
+        <view class='payment payment_balance' data-value='WXPAY_MINI' data-index='1' bindtap='radioPaymentChange'>
+          <view class="remark_tit">微信支付</view>
+          <icon class='radio_balance' 
+          type="success" 
+          size="18" 
+          color="{{clickPayIndex == 1?'#08b036':'#eeeeee'}}"></icon>
+        </view>
+
+        <view class='payment' data-value='ArrivalPay' data-index='2' bindtap='radioPaymentChange'>
+          <view class="remark_tit">货到付款</view>
+          <icon class='radio_balance' 
+          type="success" 
+          size="18" 
+          color="{{clickPayIndex == 2?'#08b036':'#eeeeee'}}"></icon>
+        </view>
+      </view>
+    </view>
+    <!-- 底部支付栏 -->
+    <view class='footer_box' wx:if="{{isShowPrice === true && isShowDistance === true}}">
+        <view class='footer_left'>
+          <text class="footer_distance" wx:if="{{orderMessArr.distance}}">{{orderMessArr.distance}} km</text>
+          <text class="footer_distance" wx:else>- - km</text>
+          <text class="footer_price" wx:if="{{orderMessArr.price}}">{{orderMessArr.price}}</text>
+          <text class="footer_price" wx:else>0.00</text>
+          元
+        </view>
+        <view class='footer_right'>
+          <button class='sure_submit' loading="{{subLoading}}" disabled="{{subLoading}}" bindtap='clickSubmit' open-type="getUserInfo">
+            <text wx:if="{{subLoading}}">提交中</text>
+            <text wx:else>确认订单</text>
+          </button>
+        </view>
+    </view>
+  </view>
+</view>

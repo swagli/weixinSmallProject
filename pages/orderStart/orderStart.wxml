@@ -1,0 +1,26 @@
+<!-- orderStart.wxml -->
+<view class="container">
+  <view class='form_box'>
+    <label class='form_tit'>发件地址：</label>
+    <view class='form_con' bindtap='getLocation'>
+      <view class='form_txt' wx:if='{{poiName}}'>{{poiName}}</view>
+      <view class='form_txt' wx:elif='{{addressName}}'>{{addressName}}</view>
+      <view class='form_txt form_default' wx:else>获取发件地址</view>
+    </view>
+  </view>
+  <view class='form_box'>
+    <label>街道楼层：</label>
+    <input class='form_inp' placeholder="非必填" bindinput="getAddressDetaile" value="{{addressDetail}}" />
+  </view>
+  <view class='form_box'>
+    <label>发件人名：</label>
+    <input class='form_inp' placeholder="必填项" bindinput="getCustomerName" value="{{name}}" />
+  </view>
+  <view class='form_box'>
+    <label>联系号码：</label>
+    <input class='form_inp' placeholder="必填项" bindinput="getPhoneNumber" value="{{phonenumber}}" type='number' bindblur='testPhoneNumber' />
+  </view>
+  <view class='form_btn_box'>
+    <button class='form_btn' bindtap='backToIndex' disabled='{{!isCanBack}}'>确认</button>
+  </view>
+</view>

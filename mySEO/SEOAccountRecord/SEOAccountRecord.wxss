@@ -1,0 +1,102 @@
+/**index.wxss**/
+@import "/utils/common.wxss";
+page{
+  background-color: #f4f4f4;
+}
+.container{
+  font-size: 34rpx;
+  height: 100%;
+  width:100%;
+  background: #f4f4f4;
+}
+.tit_box{
+  font-size: 16px;
+  margin: 6px 0 4px 0;
+  color: #777777;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
+}
+.tit_box .tit_btn{
+  width: 50%;
+  padding: 10px 0;
+  text-align: center;
+  /* border-bottom:1px solid #bac3ee; */
+  background: #ffffff;
+}
+.tit_box .first_btn{
+  border-right:1px solid #eeeeee;
+  border-radius: 2px 0 0 2px;
+}
+.tit_box .last_btn{
+  border-left: 0;
+  border-radius: 0 2px 2px 0;
+}
+.tit_box .tit_active{
+  color: #817fe4;
+  /* border:1px solid #bac3ee; */
+}
+.red_box{
+  padding: 0 15rpx;
+}
+.red_box_list{
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom:14rpx;
+  height: 170rpx;
+  font-size: 24rpx;
+  color: #999999;
+  background: #ffffff;
+}
+.red_box_list .red_left{
+  width: 15%;
+  padding:0 6px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+}
+.red_box_list .red_left image{
+  height: 40px;
+  width: 40px;
+}
+.red_box_list .red_center{
+  width: 55%;
+}
+.red_box_list .red_center .money_tit{
+  padding:20rpx 0;
+  padding-bottom:0rpx;
+  font-size: 30rpx;
+  color: #000000;
+}
+.red_box_list .red_center .money_tit .couponName{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+}
+.red_box_list .red_center .money_type{
+  margin: 6rpx 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.red_box_list .red_right{
+  width: 30%;
+  text-align: left;
+  /* display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center; */
+}
+.red_box_list .red_right .used{
+  font-size: 18px;
+  padding: 4rpx 0;
+  color: #ff6600;
+}
+.red_box_list .red_right .used_tit{
+  
+}

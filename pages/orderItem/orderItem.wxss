@@ -1,0 +1,117 @@
+/**index.wxss**/
+@import "/utils/common.wxss";
+.form_box{
+  color: #000;
+  padding: 20rpx 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #ffffff;
+}
+.form_tit{
+  margin: 10rpx 0;
+  padding: 10rpx 0;
+}
+.type_box, .size_box, .vehicle_box {
+  display: flex;
+  display: -webkit-flex;
+  width: 100%;
+  flex-wrap:wrap;
+  align-items: center;
+}
+.type_list{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 12rpx;
+  border-radius: 4rpx;
+  background: #f4f4f4;
+}
+.item_active{
+  color: #fff;
+  background: #504c48;
+}
+.type_box .type_list{
+  width: 23.5%;
+  text-align: center;
+  padding: 12rpx 0;
+}
+.type_box .type_list:nth-child(2),.type_box .type_list:nth-child(6),.type_box .type_list:nth-child(10){
+  margin: 0 2% 12rpx 2%;
+}
+.type_box .type_list:nth-child(3),.type_box .type_list:nth-child(7),.type_box .type_list:nth-child(11){
+  margin: 0 2% 10rpx 0;
+}
+.size_box .type_list{
+  width: 49%;
+  text-align: left;
+  padding: 10rpx 0;
+  text-indent: 12rpx;
+}
+.size_box .type_list:nth-child(1), .size_box .type_list:nth-child(3){
+  margin-right: 2%;
+}
+.vehicle_box .type_list{
+  width: 49%;
+  text-align: left;
+  padding: 10rpx 0;
+  text-indent: 12rpx;
+}
+.vehicle_box .type_list:nth-child(1), .vehicle_box .type_list:nth-child(3), .vehicle_box .type_list:nth-child(5){
+  margin-right: 2%;
+}
+.weight_box{
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+.weight_box .number_box{
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-end;
+  text-align: center;
+  align-items: stretch;
+}
+.number_box .weight_btn{
+  width: 60rpx;
+  padding: 0;
+  padding-bottom: 10rpx;
+  color: #ffffff;
+  font-size: 42rpx;
+  line-height: 1;
+  text-align: center;
+  border-top: 1rpx solid #aaa;
+  border-bottom: 1rpx solid #aaa;
+  background: #333333;
+}
+.number_box .weight_inp{
+  width:100rpx;
+}
+.weight_box .weight_remark{
+  color: #999999;
+  padding-top: 8rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.form_btn_box{
+  display: -webkit-flex;
+  margin:20rpx auto;
+  margin-top: 30px;
+  border-top: 1px solid #eeeeee;
+}
+.form_btn_box .form_btn{
+  margin-top:40rpx;
+  width:260rpx;
+  height:80rpx;
+  line-height:80rpx;
+  color: #ffffff;
+  border-radius: 50rpx;
+  border-color: #758da6;
+  background: #504c48;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.form_btn_box .form_btn::after{ border: none; }

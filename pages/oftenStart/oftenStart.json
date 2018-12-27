@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "常用发件地址",
+  "backgroundColor": "#f4f4f4",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance": 60
+}

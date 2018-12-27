@@ -1,0 +1,61 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/userCenter/userCenter",
+    "pages/setPassword/setPassword",
+    
+    "mySEO/myIndex/myIndex",
+    "mySEO/QRCode/QRCode",
+    "pages/openCityList/openCityList",
+    "mySEO/shareToLink/shareToLink",
+    "mySEO/shareToQRCode/shareToQRCode",
+    
+    "mySEO/mySEORecord/mySEORecord",
+    "mySEO/openUpCityList/openUpCityList",
+    
+    "mySEO/SEOAccountRecord/SEOAccountRecord",
+   
+    "mySEO/putForwardRecord/putForwardRecord",
+    "mySEO/putForwardDetaile/putForwardDetaile",
+    
+    "mySEO/putForward/putForward",
+    
+    "mySEO/openUpIndex/openUpIndex",
+    
+    
+    
+    "pages/balanceRecord/balanceRecord",
+    "pages/balanceRecordPreview/balanceRecordPreview",
+    
+    
+    "pages/RechargeRecord/RechargeRecord",
+    
+    "pages/previewOrder/previewOrder",
+    
+    "pages/order/order",
+    "pages/complaintOrder/complaintOrder",
+    "pages/orderDetaile/orderDetaile",
+    
+    
+    "pages/myDiscount/myDiscount",
+    "pages/canDiscount/canDiscount",
+    "pages/oftenStart/oftenStart",
+    "pages/oftenItem/oftenItem",
+    "pages/login/login",
+    "pages/orderRemark/orderRemark",
+    "pages/orderStart/orderStart",
+    "pages/orderItem/orderItem",
+    "pages/orderReceive/orderReceive",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "赵杰的测试小程序",
+    "navigationBarTextStyle":"black",
+    "backgroundColor":"#ffffff"
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx5550c4e45763cd0e"
+  ]
+}

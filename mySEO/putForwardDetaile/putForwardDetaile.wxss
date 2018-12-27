@@ -1,0 +1,88 @@
+/* pages/orderDetaile/orderDetaile.wxss */
+@import "/utils/common.wxss";
+.container{
+  padding: 0 12px;
+  padding-bottom: 20px;
+  font-size: 16px;
+  color: #555555;
+  border-top: 1px solid #eeeeee;
+}
+.order_head{
+  padding: 10px 0;
+}
+.order_head .head_data{
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  padding: 2px 0;
+
+}
+.order_head .head_data .order_id_tit, .order_head .head_data .order_id_con{
+  font-size: 18px;
+  color: #000000;
+}
+.order_head .head_number{
+  margin-bottom: 4px;
+}
+.task_status{
+  color: #45baf5;
+}
+.title{
+  padding: 6px 0;
+  margin-bottom: 10px;
+  font-size:18px;
+  color: #333333;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.order_sender{
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+.order_sender .sender_logo{
+  height: 40px;
+  width: 40px;
+}
+.order_sender .sender_phone{
+  height: 30px;
+  width: 30px;
+}
+.order_sender .phonenumber{
+  display: flex;
+  display: -webkit-flex; 
+}
+.order_sender .sender_number{
+  width: 88px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.order_info{
+  font-size: 16px;
+  padding: 10px 0;
+}
+.order_info .location_info{
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+.order_info .location_tit{
+  width: 30%;
+  line-height: 1.5;
+}
+.order_info .location_con{
+  text-align: right;
+  width: 70%;
+}
+.other_con{
+  text-align: right;
+  width: 100%;
+}
+.drawInfo{
+  font-size:16px;
+
+}

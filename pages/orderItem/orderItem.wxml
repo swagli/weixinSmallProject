@@ -1,0 +1,62 @@
+<!-- orderReceive.wxml -->
+<view class="container">
+  <view class='form_box'>
+  <!-- 物品类型 -->
+    <view class='form_tit'>
+      <label>物品类型</label>
+    </view>
+    <view class='type_box'>
+      <view class='type_list {{itemTypeIndex == index ? "item_active":""}}' wx:for="{{itemTypeList}}" wx:for-item="itemType" wx:key="index" bindtap='chooseItemType' data-name='{{itemType.value}}' data-index='{{itemType.index}}'>
+        {{itemType.value}}
+      </view>
+    </view>
+  <!-- 物品大小 -->
+    <view class='form_tit'>
+      <label>物品体积</label>
+    </view>
+    <view class='size_box'>
+      <view class='type_list {{itemSizeIndex == index ? "item_active":""}}' wx:for="{{itemSizeList}}" wx:for-item="itemType" wx:key="index" bindtap='chooseItemSize' data-name='{{itemType.value}}' data-type='{{itemType.type}}' data-index='{{itemType.index}}'>
+        {{itemType.value}}
+      </view>
+    </view>
+  <!-- 交通工具 -->
+    <view class='form_tit' wx:if="{{itemSize && itemSizeIndex > 1}}">
+      <label>交通工具</label>
+    </view>
+    <view class='vehicle_box'>
+    <!-- 大件时 -->
+      <block wx:if="{{itemSize =='BIG'}}">
+        <view class='type_list {{itemVehicleIndex == index ? "item_active":""}}' wx:for="{{itemVehicleList}}" wx:for-item="itemType" wx:key="index" bindtap='chooseItemVehicle' data-name='{{itemType.value}}' data-type='{{itemType.type}}' data-index='{{itemType.index}}' wx:if="{{index > 1 && index < 5}}">
+          {{itemType.value}}
+        </view>
+      </block>
+      <!-- 小货运 -->
+      <block wx:if="{{itemSize =='VERY_BIG'}}">
+        <view class='type_list {{itemVehicleIndex == index ? "item_active":""}}' wx:for="{{itemVehicleList}}" wx:for-item="itemType" wx:key="index" bindtap='chooseItemVehicle' data-name='{{itemType.value}}' data-type='{{itemType.type}}' data-index='{{itemType.index}}' wx:if="{{index > 3}}">
+          {{itemType.value}}
+        </view>
+      </block>
+      <!-- 小货运 -->
+      <block wx:if="{{itemSize =='HUGE'}}">
+        <view class='type_list {{itemVehicleIndex == index ? "item_active":""}}' wx:for="{{itemVehicleList}}" wx:for-item="itemType" wx:key="index" bindtap='chooseItemVehicle' data-name='{{itemType.value}}' data-type='{{itemType.type}}' data-index='{{itemType.index}}' wx:if="{{index > 4}}">
+          {{itemType.value}}
+        </view>
+      </block>
+    </view>
+    <!-- 物品重量 -->
+    <view class='form_tit'>
+      <label>物品重量</label>
+    </view>
+    <view class='weight_box'>
+      <view class='weight_remark'>请准确选择重量， 计量单位/公斤</view>
+      <view class='number_box'>
+          <button class='weight_btn {{minNumber === true ? "isDisabled":""}}' disabled='{{minNumber}}' bindtap='clickReduce'>-</button>
+          <input class='weight_inp' type='number' value='{{weigthNumber}}' confirm-type="done" placeholder='重量' disabled="true" />
+          <button class='weight_btn {{maxNumber === true ? "isDisabled":""}}' disabled='{{maxNumber}}'  bindtap='clickAdd'>+</button>
+      </view>
+    </view>
+  </view>
+  <view class='form_btn_box'>
+    <button class='form_btn' type="default" bindtap='backToIndex' disabled='{{!isBack}}'>确认</button>
+  </view>
+</view>

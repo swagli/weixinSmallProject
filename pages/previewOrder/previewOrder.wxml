@@ -1,0 +1,123 @@
+<!--pages/orderDetaile/orderDetaile.wxml-->
+<view>
+  <!-- 倒计时显示 -->
+  <view wx:if="{{!payMode}}">
+    <view class='timing success_time' wx:if="{{successPay}}">支付成功，正在跳转...</view>
+    <view class='timing wait_time' wx:else>订单支付将于<view class='deta_time'>{{minutes}} : {{second}}</view>秒后自动取消</view>
+  </view>
+  <view wx:if="{{payMode == 'ArrivalPay'}}">
+    <view class='timing success_time' wx:if="{{successPay}}">到付订单,下单成功</view>
+    <view class='timing wait_time' wx:else>到付订单,请前往我的订单查看</view>
+  </view>
+  
+</view>
+<!-- 订单预览 -->
+<view class="container">
+  <view class='order_head'>
+    <!-- <view class='head_data head_number'>
+      <text class='order_id_tit'>订单序号</text>
+      <text class='order_id_con'>{{orderArr.id}}</text>
+    </view> -->
+    <view class='head_data'>
+      <text wx:if="{{!payType && payMode=='ArrivalPay'}}">待支付费用(到付)</text>
+      <text wx:else>支付费用</text>
+      <text style='color:#ff6600'>{{orderArr.price}}元</text>
+    </view>
+    <view class='head_data'>
+      <text class=''>订单状态</text>
+      <text class='task_status' wx:if="{{payType && successPay}}">已支付</text>
+      <text class='task_status' wx:else>待支付</text>
+    </view>
+    <view class='head_data'>
+      <text>订单类型</text>
+      <text>{{orderType}}</text>
+    </view>
+    <view class='head_data' wx:if="{{priceAdditional}}">
+      <text>额外加价</text>
+      <text class='price_additional'><text>(因天气、高峰期、夜间等原因已额外加价) </text>+{{priceAdditional}}元</text>
+    </view>
+  </view>
+
+  <view class='title'>配送信息</view>
+  <view class='order_info'>
+    <view class='location_info'>
+      <text class='location_tit'>发件地址</text>
+      <text class='location_con'>{{orderArr.starter.addressName}}{{orderArr.starter.addressDetail}}{{orderArr.starter.poiName}}</text>
+    </view>
+    <view class='other_con'>
+      <text class='location_con'>{{orderArr.starter.name}} {{orderArr.starter.phonenumber}}</text>
+    </view>
+  </view>
+  <!-- <view class='title'>收件信息</view> -->
+  <view class='order_info'>
+    <view class='location_info'>
+      <text class='location_tit'>收件地址</text>
+      <text class='location_con'>{{orderArr.receiver.addressName}}{{orderArr.receiver.addressDetail}}{{orderArr.receiver.poiName}}</text>
+    </view>
+    <view class='other_con'>
+      <text class='location_con'>{{orderArr.receiver.name}} {{orderArr.receiver.phonenumber}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>收货物品</text>
+      <text class='location_con'>{{orderArr.item.type}} ({{orderArr.item.name}})</text>
+    </view>
+    <view class='other_con'>
+        <text wx:if="{{orderArr.vehicle}}">{{orderArr.item.size}} {{orderArr.vehicle}} {{orderArr.item.weight}} kg</text>
+        <text wx:else>{{orderArr.item.size}} 默认交通工具 {{orderArr.item.weight}} kg</text>
+    </view>
+    <view class='location_info' wx:if="{{orderArr.item.remark}}">
+      <text class='location_tit'>备注信息</text>
+      <text class='location_con'>{{orderArr.item.remark}}</text>
+    </view>
+  </view>
+  <view class='order_info time_info'>
+    <view wx:if="{{orderType == '预约'||orderType == '高级预约'}}">
+      <view class='location_info' wx:if="{{orderArr.fetchTime}}">
+        <text class='location_tit'>预约取件时间</text>
+        <text class='location_con'>{{orderArr.fetchTime}}</text>
+      </view>
+      <view class='location_info' wx:if="{{orderArr.sendTime}}">
+        <text class='location_tit'>预约送件时间</text>
+        <text class='location_con'>{{orderArr.sendTime}}</text>
+      </view>
+    </view>
+    <!-- <view class='location_info'>
+      <text class='location_tit'>创建时间</text>
+      <text class='location_con'>{{orderArr.createTime}}</text>
+    </view> -->
+    <view class='location_info'>
+      <text class='location_tit'>配送费用</text>
+      <text class='location_con'>距离 {{orderArr.distance}} km 配送费 {{orderArr.price}} 元</text>
+    </view>
+  </view>
+  <view class='pay_box' wx:if="{{!successPay}}">
+      <!-- 左方显示取消按钮 -->
+      <button class='operation cancel' type="primary" bindtap='isCancelOrder'>取消订单</button>
+      <!-- 右方显示支付 调起余额付款 -->
+      <button class='operation keepon' type="primary" bindtap="showDialog" wx:if="{{payType=='CUSTOMER_RECHARGE'&&AccountInfo.moneyRemain>=orderArr.price}}">立即支付</button>
+      <button class='operation keepon warning_recharge' type="primary" bindtap="openToRecharge" wx:if="{{payType=='CUSTOMER_RECHARGE'&&AccountInfo.moneyRemain<orderArr.price}}">余额不足点击去充值</button>
+      <!-- 调起微信支付立即下单 -->
+      <button class='operation keepon' type="primary" bindtap="wxPayment" wx:if="{{payType=='WXPAY_MINI'}}">立即支付</button>
+      <!-- 到付确认订单 -->
+      <button class='operation keepon' type="primary" bindtap="seeOrder" wx:if="{{!payType && payMode=='ArrivalPay'}}">查看订单</button>
+  </view>
+  <!-- 支付完成显示 -->
+  <view class='pay_box' wx:if="{{successPay}}">
+      <!-- <navigator class='operation success_btn' open-type="navigateBack" delta="1">返回首页</navigator> -->
+      <navigator class='operation success_btn' open-type="reLaunch" url="/pages/index/index">返回首页</navigator>
+      <navigator class='operation success_btn' open-type="navigate" url="/pages/order/order">查看订单</navigator>
+  </view>
+    <view>
+      <!-- 自定义余额支付框 -->
+      <model id='dialog' 
+        title='壹客送(余额支付)' 
+        content="¥{{orderArr.price}}" 
+        explain="余额剩余 {{AccountInfo.moneyRemain}} 元" 
+        cancelText='关闭' 
+        confirmText='确认支付' 
+        bind:cancelEvent="_cancelEvent"  
+        bind:confirmEvent="_confirmEvent">
+      </model>
+    </view>
+    
+</view>

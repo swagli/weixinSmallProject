@@ -1,0 +1,86 @@
+/**index.wxss**/
+@import "/utils/common.wxss";
+page{
+  background-color: #f4f4f4;
+}
+.container{
+  padding-top: 20rpx;
+  font-size: 16px;
+  height: 100%;
+  width:100%;
+  background: #f4f4f4;
+}
+.often_box{
+  padding: 0 10px;
+}
+.often_list{
+  position: relative;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2px 0;
+  height: 102px;
+  margin-bottom: 10px;
+  border-radius: 2px 6px 2px 2px;
+  background: #ffffff;
+}
+.often_list .list_left{
+  width: 15%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content:center;
+  align-items: center;
+}
+.often_list .list_content{
+  width: 70%;
+  padding-left: 2%;
+  padding-right: 0;
+}
+.often_list .list_right{
+  width: 10%;
+  text-align: center;
+}
+.often_list .list_left .left_tit{
+  position: relative;
+  font-size: 12px;
+  padding: 6px 6px;
+  border-radius: 50%;
+  background: #eeeeee;
+}
+.often_list .list_left .left_tit::after{
+  position: absolute;
+  content: "";
+  display: inline-block;
+  height:90%;
+  width:1px;
+  right: -10px;
+  top:5%;
+  background: #eeeeee;
+}
+.often_list .list_content .con_tit{
+  margin-bottom: 4px;
+  font-size:16px; 
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.often_list .list_content .con_info{
+  font-size:14px; 
+  color:#777777;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.often_list .list_content .con_location{
+  font-size:14px; 
+  color:#777777;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: no-wrap;
+}
+.often_list .list_right .cancel{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,3 @@
+<!--mySEO/shareToLink/shareToLink.wxml-->
+<web-view src="{{web_src}}"></web-view>
+

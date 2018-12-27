@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单支付预览",
+  "backgroundColor": "#ffffff",
+  "usingComponents": {
+    "model": "/components/model-pay"
+  }
+}

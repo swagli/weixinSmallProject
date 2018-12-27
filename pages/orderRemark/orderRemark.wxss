@@ -1,0 +1,31 @@
+/**index.wxss**/
+@import "/utils/common.wxss";
+.container{
+  padding:0 16rpx;
+  font-size: 34rpx;
+}
+.text_remark{
+  width: auto;
+  font-size:30rpx;
+  margin-top: 20rpx;
+  padding: 20px 10rpx;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.form_btn_box{
+  display: flex;
+  display: -webkit-flex;
+  margin:20rpx auto;
+}
+.form_btn_box .form_btn{
+  margin-top: 32rpx;
+  width:260rpx;
+  height:80rpx;
+  line-height:80rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  border: none;
+  border-radius: 50rpx;
+  border-color: #758da6;
+  background: #758da6;
+}

@@ -1,0 +1,68 @@
+<!-- orderStart.wxml -->
+<view class="container">
+  <view class='tit_box'>
+    <view class="tit_btn first_btn {{canUse?'tit_active':''}}" bindtap='canUseClick'>余额消费记录</view>
+    <view class="tit_btn last_btn {{!canUse?'tit_active':''}}" bindtap='historyClick'>余额充值记录</view>
+  </view>
+  <!-- 可用红包列表 -->
+  <view class="red_box" wx:if="{{canUse}}">
+    <view class='red_box_list' wx:for="{{discountListArr}}" wx:key="{{index}}" wx:if="{{discountListArr.length > 0}}">
+        <view class='red_left'>
+          <image src='../images/recharge.png' mode='aspectFit'></image>
+        </view>
+        <view class='red_center'>
+            <view class='money_tit'>
+              <view class='couponName' wx:if="{{item.payAmount < 0}}">订单支付</view>
+              <view class='couponName' wx:else>订单取消退款</view>
+            </view>
+            <view class='money_type'>
+              <text>{{item.createTime}}</text>
+            </view>
+        </view>
+        <view class='red_right'>
+            <view>
+              <view class='used' wx:if="{{item.payAmount < 0}}">{{item.payAmount}}</view>
+              <view class='used' wx:else style='color:#1e82d2'>+{{item.payAmount}}</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{discountListArr.length == 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有记录哦 ~</view>
+      </view>
+    </view>
+  </view>
+  <!-- 历史红包列表 -->
+  <view class="red_box" wx:else>
+    <view class="red_box_list history_list {{item.isExpired?'bg_isExpire':'bg_isUsed'}}" wx:for="{{historyListArr}}" wx:key="{{index}}" wx:if="{{historyListArr.length > 0}}">
+        <view class='red_left'>
+          <image src='../images/recharge.png' mode='aspectFit'></image>
+        </view>
+        <view class='red_center'>
+            <view class='money_tit'>
+              <view class='couponName'>余额充值</view>
+            </view>
+            <view class='money_type'>
+              <view>付款金额：{{item.payAmount}}</view>
+              <!-- <view>实际到账：{{item.rechargeAmount}}</view> -->
+            </view>
+            <view class='money_type'>
+              <text>{{item.createTime}}</text>
+            </view>
+        </view>
+        <view class='red_right'>
+            <view>
+              <view class='used'style='color:#1e82d2'>+{{item.payAmount}}</view>
+              <view class='used_tit'>（到账金额）</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{historyListArr.length == 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有记录哦 ~</view>
+      </view>
+    </view>
+  </view>
+</view>

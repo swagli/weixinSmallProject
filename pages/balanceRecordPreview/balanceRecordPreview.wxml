@@ -1,0 +1,30 @@
+<!--pages/orderDetaile/orderDetaile.wxml-->
+<view>
+  <view class='timing success_time' wx:if="{{successPay}}">充值成功</view>
+  <view class='timing wait_time' wx:else>支付将于<view class='deta_time'>{{minutes}} : {{second}}</view>秒后取消</view>
+</view>
+<view class="container">
+  <view class='order_head'>
+    <view class='head_data'>
+      <text>支付状态</text>
+      <text class='task_status' wx:if="{{successPay}}">已支付</text>
+      <text class='task_status' wx:else>等待支付</text>
+    </view>
+    <view class='head_data'>
+      <text>支付类型</text>
+      <text>余额充值</text>
+    </view>
+    <view class='head_data record_number_box'>
+      <text>充值金额</text>
+      <text class='record_number'>{{payAmount}}元</text>
+    </view>
+  </view>
+  <view class='pay_box' wx:if="{{!successPay}}">
+      <button class='operation cancel' type="primary" bindtap='isCancelOrder'>放弃支付</button>
+      <button class='operation keepon' type="primary" bindtap="wxPayment">立即支付</button>
+  </view>
+  <view class='pay_box' wx:if="{{successPay}}">
+      <navigator class='operation keepon success_btn' open-type="reLaunch" url="../index/index">去下单</navigator>
+      <navigator class='operation keepon success_btn' open-type="navigate" url="../RechargeRecord/RechargeRecord">查看记录</navigator>
+  </view>
+</view>

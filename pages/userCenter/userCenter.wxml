@@ -1,0 +1,88 @@
+<!--pages/userCenter/userCenter.wxml-->
+<view class="container">
+  <!-- 头像及昵称和账户 -->
+  <view class='user_box'>
+    <!-- 昵称及手机号码 -->
+    <view class='user_logo'>
+      <image wx:if="{{userLogo}}" src="{{userLogo}}" mode="aspectFit"></image>
+      <image wx:else src="../images/logo.png" mode="aspectFit"></image>
+    </view>
+    <view class='user_info' wx:if="{{phoneNumber}}">
+      <view class='user_name' wx:if="{{userName}}">{{userName}}</view>
+      <view class='user_name' wx:else>壹用户</view>
+      <view class='user_phone' wx:if="{{phoneNumber}}">{{phoneNumber}}</view>
+      <view class='user_phone' wx:if="{{!phoneNumber}}">***********</view>
+      <view class='user_explain' bindtap='openToLogin'>切换手机账号</view>
+    </view>
+    <view class='user_info' wx:if="{{!phoneNumber}}" bindtap='clearStorage'>
+      <view class='user_name'>登录/绑定</view>
+    </view>
+    <!-- 我的账户余额 -->
+    <view class='user_account'>
+      <view class='account_tit'>我的余额(元)</view>
+      <view class='account_balance'>
+        <text class="balance_number">{{AccountInfo.moneyRemain}}</text>
+      </view>
+      <view class='recharge' bindtap='openToBalanceRecord'>去充值</view >
+    </view>
+  </view>
+  <!-- 功能列表 -->
+  <view class='list_box'>
+    <!-- 我的订单 -->
+    <view class='list' bindtap='openToOrder'>
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_order.png' mode="aspectFit"></image>
+        <text class='list_con'>我的订单</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+    <!-- 我的红包 -->
+    <view class='list' bindtap='openToMyDiscound'>
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_red.png' mode="aspectFit"></image>
+        <text class='list_con'>我的红包</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+    <!-- 余额记录 -->
+    <view class='list' bindtap='openToRechargeRecord'>
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_balan.png' mode="aspectFit"></image>
+        <text class='list_con'>余额记录</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+    <!-- 奖励与推广 -->
+    <view class='list' bindtap='openToSEO'>
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_hot.png' mode="aspectFit"></image>
+        <text class='list_con'>业务推广</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+    <!-- 密码设置 -->
+    <view class='list' bindtap='openToPassword'  wx:if="{{phoneNumber}}">
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_pas.png' mode="aspectFit"></image>
+        <text class='list_con'>密码设置</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+    <!-- 联系客服 -->
+    <view class='list' bindtap='callToService'>
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_kf.png' mode="aspectFit"></image>
+        <text class='list_con'>联系客服</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+    <!-- 退出登录 -->
+    <view class='list' bindtap='clearStorage'>
+      <view class='list_left'>
+        <image class='list_tit' src='../images/icon_out.png' mode="aspectFit"></image>
+        <text class='list_con'>注销登录</text>
+      </view>
+      <image class='list_right' src='../images/icon_right_1.png' mode="aspectFit"></image>
+    </view>
+  </view>
+</view>

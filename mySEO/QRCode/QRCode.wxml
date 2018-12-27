@@ -1,0 +1,14 @@
+<!--mySEO/shareToLink/shareToLink.wxml-->
+<image class='img_banner' src='{{banner_img}}' mode ="aspectFit"></image>
+<view class="container">
+  <view class='code_title'>微信扫一扫 加入我们</view>
+  <image class='img_code' src='{{shareQRCode?shareQRCode:banner_img_null}}' 
+  mode ="aspectFit" 
+  bindtap='QRcodeShare'
+  style='height:200px;width:100%;'></image>
+  <view class='code_back'>
+    <view bindtap='backToIndex'>返回推广</view>
+    <view bindtap='openToMySEORecord'>查看记录</view>
+  </view>
+</view>
+

@@ -1,0 +1,22 @@
+<!-- orderStart.wxml -->
+<view class="container">
+  <view class='mess_info'>
+    <view class='order_id'>
+      <text>订单号</text>
+      <text>{{orderId}}</text>
+    </view>
+    <view class='order_id order_sender'>
+      <text>配送员</text>
+      <text>{{senderName}}</text>
+    </view>
+  </view>
+  <view class='title'>投诉内容（单选项）</view>
+  <view class='text_list' wx:for="{{reasonList}}" wx:key="{{index}}" bindtap='chooseList' data-index='{{index}}'>
+    <text class='text_tit'>{{index}}</text>
+    <text class='text_con'>{{item}}</text>
+    <icon class='text_check' type="success" size="18" color="{{index==clickIndex?'#ff6600':'#eeeeee'}}"></icon>
+  </view>
+  <view class='form_btn_box'>
+    <button class='form_btn' bindtap='requestFunction' disabled='{{!isCanBack}}'>确认</button>
+  </view>
+</view>

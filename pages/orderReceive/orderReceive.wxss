@@ -1,0 +1,60 @@
+/**index.wxss**/
+@import "/utils/common.wxss";
+.container{
+  padding-left: 10rpx;
+  font-size: 34rpx;
+}
+.form_box{
+  display: flex;
+  display: -webkit-flex;
+  color: #000;
+  width: 100%;
+  padding: 24rpx 10rpx;
+  border-bottom: 1rpx solid #eeeeee;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form_box:first-child{
+  margin-top: 20rpx;
+  border-top: 1rpx solid #eeeeee;
+}
+.form_box .form_tit{
+  margin-right: 20rpx;
+}
+.form_box .form_con{
+  width: 80%;
+}
+.form_box .form_txt{
+  padding-right:10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form_box .form_default{
+  color: #999999;
+}
+.form_box .form_inp{
+  padding-left: 20rpx;
+  padding-right:10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form_btn_box{
+  /* display: flex; */
+  display: -webkit-flex;
+  margin:20rpx auto;
+}
+.form_btn_box .form_btn{
+  margin-top: 32rpx;
+  width:260rpx;
+  height:80rpx;
+  line-height:80rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  border: none;
+  border-radius: 50rpx;
+  border-color: #758da6;
+  background: #504c48;
+}

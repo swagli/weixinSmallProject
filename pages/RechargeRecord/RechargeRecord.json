@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "余额消费及充值记录",
+  "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":60
+}

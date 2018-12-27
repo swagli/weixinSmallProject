@@ -1,0 +1,147 @@
+<!-- order.wxml -->
+<view class="container">
+  <view class='tit_box'>
+    <view class="tit_btn first_btn {{nowOrder?'tit_active':''}}" bindtap='nowOrderClick'>当前订单</view>
+    <view class="tit_btn last_btn {{todayOrder?'tit_active':''}}" bindtap='todayClick'>今日完成</view>
+    <view class="tit_btn last_btn {{historyOrder?'tit_active':''}}" bindtap='historyClick'>全部订单</view>
+  </view>
+  <!-- 当前订单列表 -->
+  <view class="oeder_box" wx:if="{{nowOrder}}">
+    <!-- 订单概览 -->
+    <view class='order_list' 
+    wx:for="{{presentOrderListArr}}" 
+    wx:key="{{index}}" 
+    wx:if="{{presentOrderListArr.length > 0}}">
+        <view class='order_receive'>
+          <text class='receive_tit'>送至</text>
+          <view class='receive_address' bindtap='seeReceiveLocation' data-orderdata="{{item.receiver}}">
+            <text wx:if="{{item.receiver.poiName}}">{{item.receiver.poiName}}</text>
+            <text wx:else>{{item.receiver.addressName}}</text>
+          </view>
+          <image class='receive_add_rit' src='../images/icon_right.png' mode="aspectFit"></image>
+          <text class='receive_status'>{{item.orderStatus}}</text>
+        </view>
+        <view class='order_item' data-orderdata="{{item}}" bindtap='seeOrderDetaile'>
+          <image src='../images/icon_goods.png' mode='aspectFit'></image>
+          <text class='item_type'><text wx:if="{{item.item.type}}">{{item.item.type}}</text><text wx:else>{{item.item.name}}</text> {{item.item.weight}}kg</text>
+          <text class='item_price'>¥ <text class='price_number'>{{item.price}}</text></text>
+        </view>
+        <view class='operation'>
+          <view class='order_type' style="{{item.orderType == '高级预约'?'width:20%':''}}">{{item.orderType}}</view>
+          <view class='order_ope'>
+            <view class='btn_order again_order' 
+            data-index="{{index}}" 
+            data-dataid="{{item.id}}" 
+            wx:if="{{item.orderStatus=='已超时'||item.orderStatus=='超时取消'}}"
+            bindtap='ReRushOrder'>重新推送</view>
+            <view class='btn_order cancel_order' 
+            data-index="{{index}}" 
+            data-dataid="{{item.id}}" 
+            wx:if="{{item.orderStatus=='刚创建'||item.orderStatus=='已支付'||item.orderStatus=='推送中'||item.orderStatus=='已超时'||item.orderStatus=='超时取消'}}"
+            bindtap='cancelOrder'>取消订单</view>
+            <view class='btn_order detaile_order' data-orderdata="{{item}}" bindtap='seeOrderDetaile'>订单详情</view>
+          </view>
+        </view>
+    </view>
+    <view wx:if="{{presentOrderListArr.length <= 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有订单哦 ~</view>
+      </view>
+    </view>
+  </view>
+  <!-- 今日可投诉订单列表 -->
+  <view class="oeder_box" wx:if="{{todayOrder}}">
+    <!-- 订单概览 -->
+    <view class='order_list' 
+    wx:for="{{todayListArr}}" 
+    wx:key="{{index}}" 
+    wx:if="{{todayListArr.length > 0}}">
+        <view class='order_receive'>
+          <text class='receive_tit'>送至</text>
+          <view class='receive_address' bindtap='seeReceiveLocation' data-orderdata="{{item.receiver}}">
+            <text wx:if="{{item.receiver.poiName}}">{{item.receiver.poiName}}</text>
+            <text wx:else>{{item.receiver.addressName}}</text>
+          </view>
+          <image class='receive_add_rit' src='../images/icon_right.png' mode="aspectFit"></image>
+          <text class='receive_status'>{{item.orderStatus}}</text>
+        </view>
+        <view class='order_item' data-orderdata="{{item}}" bindtap='seeOrderDetaile'>
+          <image src='../images/icon_goods.png' mode='aspectFit'></image>
+          <text class='item_type'><text wx:if="{{item.item.type}}">{{item.item.type}}</text><text wx:else>{{item.item.name}}</text> {{item.item.weight}}kg</text>
+          <text class='item_price'>¥ <text class='price_number'>{{item.price}}</text></text>
+        </view>
+        <view class='operation'>
+          <view class='order_type' style="{{item.orderType == '高级预约'?'width:20%':''}}">{{item.orderType}}</view>
+          <view class='order_ope'>
+            <!-- <view class='btn_order again_order'>再来一单</view> -->
+            <view class='btn_order cancel_order' 
+            data-index="{{index}}" 
+            data-datalist="{{item}}" 
+            bindtap='complaintOrder'>投诉订单</view>
+            <view class='btn_order detaile_order' data-orderdata="{{item}}" bindtap='seeOrderDetaile'>订单详情</view>
+          </view>
+        </view>
+    </view>
+    <view wx:if="{{todayListArr.length <= 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有订单哦 ~</view>
+      </view>
+    </view>
+  </view>
+  <!-- 历史全部订单列表 -->
+  <view class="oeder_box" wx:if="{{historyOrder}}">
+    <!-- 订单概览 -->
+    <view class='order_list' 
+    wx:for="{{historyListArr}}" 
+    wx:key="{{index}}" 
+    wx:if="{{historyListArr.length > 0}}">
+        <view class='order_receive'>
+          <text class='receive_tit'>送至</text>
+          <view class='receive_address' bindtap='seeReceiveLocation' data-orderdata="{{item.receiver}}">
+            <text wx:if="{{item.receiver.poiName}}">{{item.receiver.poiName}}</text>
+            <text wx:else>{{item.receiver.addressName}}</text>
+          </view>
+          <image class='receive_add_rit' src='../images/icon_right.png' mode="aspectFit"></image>
+          <text class='receive_status'>{{item.orderStatus}}</text>
+        </view>
+        <view class='order_item' data-orderdata="{{item}}" bindtap='seeOrderDetaile'>
+          <image src='../images/icon_goods.png' mode='aspectFit'></image>
+          <text class='item_type'><text wx:if="{{item.item.type}}">{{item.item.type}}</text><text wx:else>{{item.item.name}}</text> {{item.item.weight}}kg</text>
+          <text class='item_price'>¥ <text class='price_number'>{{item.price}}</text></text>
+        </view>
+        <view class='operation'>
+          <view class='order_type' style="{{item.orderType == '高级预约'?'width:20%':''}}">{{item.orderType}}</view>
+
+          <view class='order_ope'>
+            <view class='btn_order again_order' 
+            data-index="{{index}}" 
+            data-dataid="{{item.id}}" 
+            wx:if="{{item.orderStatus=='已超时'||item.orderStatus=='超时取消'}}"
+            bindtap='ReRushOrder'>重新推送</view>
+
+            <view class='btn_order cancel_order' 
+            data-index="{{index}}" 
+            data-dataid="{{item.id}}" 
+            wx:if="{{item.orderStatus=='刚创建'||item.orderStatus=='已支付'||item.orderStatus=='推送中'||item.orderStatus=='已超时'||item.orderStatus=='超时取消'}}" 
+            bindtap='cancelOrder'>取消</view>
+
+            <view class='btn_order' 
+            data-index="{{index}}" 
+            data-dataid="{{item.id}}" 
+            wx:if="{{item.orderStatus=='已送达'||item.orderStatus=='已完成'||item.orderStatus=='已评价'||item.orderStatus=='已取消'||item.orderStatus=='超时取消'}}" 
+            bindtap='deleteOrderOne'>删除</view>
+
+            <view class='btn_order detaile_order' data-orderdata="{{item}}" bindtap='seeOrderDetaile'>详情</view>
+          </view>
+        </view>
+    </view>
+    <view wx:if="{{historyListArr.length <= 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有订单哦 ~</view>
+      </view>
+    </view>
+  </view>
+</view>

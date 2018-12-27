@@ -1,0 +1,47 @@
+<!--mySEO/putForward/putForward.wxml-->
+<view class="container">
+  <!-- 金额总览 -->
+    <view class='head_box'>
+        <view class='explain'>
+            <view class='title'>奖励金提现</view>
+            <view bindtap='openToPutForward_record'>提现记录</view>
+        </view>
+        <view class='balance'>
+          <view class='total'>奖励金余额</view>
+          <view class='price' wx:if="{{moneyRemain}}">{{moneyRemain}}<text> 元</text></view>
+          <view class='price' wx:else>0.00<text> 元</text></view>
+        </view>
+    </view>
+    <view class='main_box'>
+        <view class='put_box'>
+            <view class='put_title'>开户银行</view>
+            <input class='put_inp' type="text" maxlength="20" bindinput='getDrawInfoName' placeholder='输入开户银行' value="{{PutForwardApplyMes.drawInfoName}}" />
+        </view> 
+        <view class='put_box'>
+            <view class='put_title'>银行卡号</view>
+            <input class='put_inp' type="number" maxlength="30" bindinput='getDrawInfoCard' placeholder='输入提现转入的银行卡卡号' value="{{PutForwardApplyMes.drawInfoCard}}" />
+        </view> 
+        <view class='put_forward_box'>
+            <view class='explain'> 
+                <view>提现金额</view>
+                <view class='all_put' bindtap='allPut'>全部提现</view>
+            </view>
+            <view class='balance_put'>
+                <view class='put_title'>¥</view>
+                <input class='put_inp' placeholder-class="put_inp_pla" bindinput='getAmount' type="number" maxlength="20" placeholder='输入提现金额' value="{{PutForwardApplyMes.amount}}" />
+            </view>
+        </view> 
+        <view class='form_btn_box'>
+          <button class='form_btn' style="color:{{myColor}}" bindtap='surePutForward' disabled='{{!isCanBack}}'>{{words}}</button>
+        </view>
+    </view>
+    <!-- 文字说明 -->
+    <view class='words'>
+      <view class='words-title'>提现说明</view>
+      <view class='words-cont'>1、每月5日为提现日，其他时间不能提现，不能同时发起多次提现。</view>
+      <view class='words-cont'>2、提现申请成功后，一般2~5个工作日（除周末、节假日）内放款。</view>
+      <view class='words-cont'>3、放款成功后系统会自动扣除账户相应的数额，可在提现记录中查看提现情况。</view>
+      <view class='words-title'>备注：</view>
+      <view class='words-cont'>如有疑问请拨打客服热线 400-0828-929。</view>
+    </view>
+</view>

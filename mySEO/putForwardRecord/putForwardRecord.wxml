@@ -1,0 +1,41 @@
+<!-- putForwardRecord.wxml -->
+<view class="container">
+  <!-- 记录列表 -->
+  <view class="red_box" wx:if="{{canUse}}">
+    <view class='red_box_list' wx:for="{{discountListArr}}" wx:key="{{index}}" data-itendata="{{item}}" bindtap='seeDetaile' wx:if="{{discountListArr.length > 0}}">
+        <view class='red_left'>
+          <image src='/images/SEO/recharge.png' mode='aspectFit'></image>
+        </view>
+        <view class='red_center'>
+            <view class='money_tit'>
+              <view class='couponName'>
+                <view>提现状态:</view>
+                <view wx:if="{{item.drawStatus=='JUST_CREATED'}}">受理中</view>
+                <view wx:elif="{{item.drawStatus=='APPROVED'}}">已放款</view>
+                <view wx:elif="{{item.drawStatus=='REJECTED'}}">已拒绝</view>
+                <view wx:else>未知状态</view>
+              </view>
+            </view>
+            <view class='money_type'>
+              <text>{{item.createTime}}</text>
+            </view>
+        </view>
+        <view class='red_right'>
+            <icon class='icon_sign' type="waiting" size="20" wx:if="{{item.drawStatus=='JUST_CREATED'}}"></icon>
+            <icon class='icon_sign' type="success" size="20" wx:elif="{{item.drawStatus=='APPROVED'}}"></icon>
+            <icon class='icon_sign' type="warn" size="20" wx:elif="{{item.drawStatus=='REJECTED'}}"></icon>
+            <icon class='icon_sign' type="warn" size="20" wx:else></icon>
+            <view>
+              <view class='used' wx:if="{{item.payAmount < 0}}">{{item.amount}}</view>
+              <view class='used' wx:else style='color:#1e82d2'>-{{item.amount}}</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{discountListArr.length == 0}}">
+      <view class='no_data'>
+          <image src='/pages/images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有记录哦 ~</view>
+      </view>
+    </view>
+  </view>
+</view>

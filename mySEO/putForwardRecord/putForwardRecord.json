@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "奖励金体提现记录",
+  "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":60
+}

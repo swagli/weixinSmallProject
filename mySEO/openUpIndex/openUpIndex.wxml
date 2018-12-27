@@ -1,0 +1,38 @@
+<!--openUpIndex.wxml-->
+<view class="container">
+  <view class='banner_box'>
+    <image src='/images/SEO/seo.png' mode='aspectFit'></image>
+    <!-- <swiper class='swiper_box' indicator-dots="true" autoplay="true" circular="true" interval="2000" duration="500">
+      <swiper-item>
+        <image src="/images/SEO/seo.png" class="slide-image" mode='aspectFit' />
+      </swiper-item>
+      <swiper-item>
+        <image src="/images/SEO/seo_banner_1.png" class="slide-image" mode='aspectFit' />
+      </swiper-item>
+    </swiper> -->
+  </view>
+  <view class="section">
+    <view class='register'>
+      <text class="section__title">输入注册姓名</text>
+      <input class='name_inp' bindinput="bindKeyInput" placeholder="填写真实姓名" value='{{userName}}' maxlength="10" />
+    </view>
+    <view class='register'>
+      <text class="section__title">选择业务城市</text>
+      <input class='name_inp' bindtap="openCityList" placeholder="请选择业务城市" value='{{chooseCityData.city}}' disabled="true" />
+    </view>
+    <view class='form_btn_box'>
+      <button class='form_btn' bindtap='requestRegister' disabled='{{!isCanBack}}'>申请业务员</button>
+    </view>
+  </view>
+  <view class='words'>
+    <view class='words-title'>奖励说明</view>
+    <view class='words-cont'>邀请好友注册用户，注册成功后并完成首单即可获得{{DefaultCoefficient.customerFirstOrderReward}}元奖励金</view>
+    <view class='words-cont'>用户完成首单后，以后每次完成下单可获得{{DefaultCoefficient.customerOrderReward}}元奖励金提成</view>
+    <view class='words-cont'>邀请好友注册配送员，注册成功后并完成首单配送即可获得{{DefaultCoefficient.senderFirstTaskReward}}元奖励金</view>
+    <view class='words-cont'>配送员完成首单后，以后每次完成完成任务可获得{{DefaultCoefficient.senderTaskReward}}元奖励金提成</view>
+    <view class='words-title'>提醒：</view>
+    <view class='words-cont'>获取的奖励可提现，不同区域奖励金额可能会有所不同，请以实际到账的金额为准。</view>
+    <view class='words-title'>备注：</view>
+    <view class='words-cont'>以上说明最终解释权归本公司所有。</view>
+  </view>
+</view>

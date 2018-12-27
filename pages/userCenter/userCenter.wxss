@@ -1,0 +1,85 @@
+/* pages/userCenter/userCenter.wxss */
+@import "/utils/common.wxss";
+.container{
+  background: #ffffff;
+  padding: 0 15px;
+}
+.user_box{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+.user_box .user_logo{
+  margin-right: 16px;
+  width: 20%;
+}
+.user_box .user_logo image{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.user_box .user_info{
+  width: 40%;
+}
+.user_box .user_info .user_name{
+  color: #000000;
+  font-size: 20px;
+}
+.user_box .user_info .user_phone{
+  color: #333333;
+  font-size: 16px;
+}
+.user_box .user_info .user_explain{
+  font-size: 12px;
+  margin-top: 4px;
+  color: #999999;
+}
+.user_box .user_account{
+  width: 40%;
+  text-align: center;
+  margin-top: -2px;
+}
+.user_box .user_account .account_balance{
+  font-size: 12px;
+  margin-top: 4px;
+  color: #ffae00;
+}
+.user_box .user_account .account_balance .balance_number{
+  font-size: 18px;
+}
+.user_box .user_account .account_tit{
+  font-size: 12px;
+  margin-top: 6px;
+  color: #999999;
+}
+.user_box .user_account .recharge{
+  font-size: 14px;
+  margin-top: 4px;
+  color: #494bbd;
+}
+.list_box .list{
+  padding: 15px 0;
+  font-size: 18px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list_box .list .list_left {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+}
+.list_box .list .list_left .list_tit{
+  height: 20px;
+  width: 20px;
+  margin-right: 6px;
+}
+.list_box .list .list_right{
+  height: 16px;
+  width: 16px;
+}

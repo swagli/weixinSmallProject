@@ -1,0 +1,47 @@
+<!-- oftenItem.wxml -->
+<view class="container">
+  <!-- 常用物品列表 -->
+  <view class="often_box">
+    <!--常用物品-->
+    <view class="often_list" wx:for="{{oftenListArr}}" wx:key="{{index}}" wx:if="{{oftenListArr.length > 0}}" >
+        <view class="list_left">
+          <text class='left_tit' wx:if="{{item.isDefaultItem}}" style='color:#ff6600;'>默*</text>
+          <text class='left_tit' wx:else>物{{index+1}}</text>
+        </view>
+        <view class="list_content" bindtap='chooseItemList' data-datalist="{{item}}">
+            <view class='con_tit' wx:if="{{item.item.itemType}}">{{item.item.itemType}}</view>
+            <view class='con_tit' wx:else>{{item.item.itemName}}</view>
+            <!-- <view class='con_info'>{{item.item.itemSize}} {{item.vehicle}} {{item.item.itemWeight}} kg</view> -->
+            <view class='quick_content con_info'>
+                  <view class='size_info'>
+                    <text wx:if="{{item.item.itemSize=='SMALL'}}">小型件</text>
+                    <text wx:if="{{item.item.itemSize=='MIDDLE'}}">中型件</text>
+                    <text wx:if="{{item.item.itemSize=='BIG'}}">大型件</text>
+                    <text wx:if="{{item.item.itemSize=='VERY_BIG'}}">小型货运</text>
+                    <text wx:if="{{item.item.itemSize=='HUGE'}}">中型货运</text>
+                  </view>
+                  <view class='size_info vehicle_info'>
+                    <text wx:if="{{item.vehicle == 'ELECTRIC_BICYCLE'}}">电动车</text>
+                    <text wx:elif="{{item.vehicle == 'CAR'}}">小汽车</text>
+                    <text wx:elif="{{item.vehicle == 'VAN'}}">面包车</text>
+                    <text wx:elif="{{item.vehicle == 'MOBILE_TRICYCLE'}}">机动三轮车</text>
+                    <text wx:elif="{{item.vehicle == 'TRUCK'}}">小型货车</text>
+                    <text wx:elif="{{item.vehicle == 'MIDDLE_TRUCK'}}">中型货车</text>
+                    <text wx:else>默认交通工具</text>
+                  </view>
+                  <view class='size_info weight_info'>{{item.item.itemWeight}}kg</view>
+                </view>
+        </view>
+        <view class="list_right">
+            <view class='cancel' data-deleteid="{{item.id}}" data-deleteindex="{{index}}" bindtap='deleteOneData'><icon type="cancel" size="20" color="#bbbbbb"></icon></view>
+            <view class='default' data-defaultid="{{item.id}}" bindtap='setDefault'><icon type="success" size="16" color="{{item.isDefaultItem ? '#ffAA00':'#cccccc'}}"></icon></view>
+        </view>
+    </view>
+    <view wx:if="{{oftenListArr.length == 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有记录哦 ~</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+<!-- orderStart.wxml -->
+<view class="container">
+  <view class='tit_box'>
+    <view class="tit_btn first_btn {{canUse?'tit_active':''}}" bindtap='canUseClick'>下单可使用红包</view>
+    <view class="tit_btn last_btn {{!canUse?'tit_active':''}}" bindtap='historyClick'>已使用或已过期</view>
+  </view>
+  <!-- 可用红包列表 -->
+  <view class="red_box" wx:if="{{canUse}}">
+    <view class='red_box_list' wx:for="{{discountListArr}}" wx:key="{{index}}" wx:if="{{discountListArr.length > 0}}">
+        <view class='red_left'>
+          <view class='money_tit'>
+              <text>¥</text>
+              <text class='moneyNumber'>{{item.couponPrice}}</text>
+          </view>
+          <text class='money_con'>满{{item.minPrice}}元可用</text>
+        </view>
+        <view class='red_center'>
+            <view class='money_tit'>
+              <view class='couponName'>{{item.couponName}}</view>
+            </view>
+            <view class='money_type'>
+             <text wx:if="{{item.couponType =='common'}}">通用红包</text>
+              <text wx:if="{{item.couponType =='direct'}}">拼单专用红包</text>
+              <text wx:elif="{{item.couponType =='merge'}}">直发专用红包</text>
+            </view>
+            <view class='money_type'>
+              <text>{{item.expireDate}} 到期</text>
+            </view>
+        </view>
+        <view class='red_right'>
+            <view>
+              <view class='used' data-reddata="{{item}}" bindtap='backToIndex'>去使用</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{discountListArr.length == 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有数据哦 ~</view>
+      </view>
+    </view>
+  </view>
+  <!-- 历史红包列表 -->
+  <view class="red_box" wx:else>
+    <view class="red_box_list history_list {{item.isExpired?'bg_isExpire':'bg_isUsed'}}" wx:for="{{historyListArr}}" wx:key="{{index}}" wx:if="{{historyListArr.length > 0}}">
+        <view class='red_left'>
+          <view class='money_tit'>
+              <text>¥</text>
+              <text class='moneyNumber'>{{item.couponPrice}}</text>
+          </view>
+          <text class='money_con'>满{{item.minPrice}}元可用</text>
+        </view>
+        <view class='red_center'>
+            <view class='money_tit'>
+              <view class='couponName'>{{item.couponName}}</view>
+            </view>
+            <view class='money_type'>
+             <text wx:if="{{item.couponType =='common'}}">通用红包</text>
+              <text wx:if="{{item.couponType =='direct'}}">拼单专用红包</text>
+              <text wx:elif="{{item.couponType =='merge'}}">直发专用红包</text>
+            </view>
+            <view class='money_type'>
+              <text>{{item.expireDate}} 到期</text>
+            </view>
+        </view>
+        <!-- <view class='red_right'>
+            <view>
+              <view class='used' data-reddata="{{item}}" bindtap='backToIndex'>去使用</view>
+            </view>
+        </view> -->
+    </view>
+    <view wx:if="{{historyListArr.length == 0}}">
+      <view class='no_data'>
+          <image src='../images/icon_no_data.png' mode='aspectFit' class='no_data_icon'></image>
+          <view class='no_data_text'>~ 还没有数据哦 ~</view>
+      </view>
+    </view>
+  </view>
+</view>

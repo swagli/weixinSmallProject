@@ -1,0 +1,20 @@
+<!-- login.wxml -->
+<view class="container">
+  <view class='logo_box'>
+    <image class='logo_img' src="../images/logo.png" mode="aspectFit"></image>
+  </view>
+  <view class='main'>
+    <view class="input_box">
+      <input value='{{phonenumber}}' type='number' placeholder='输入手机号码' bindinput="inputPhoneNumber" focus="true" adjust-position="true" />
+    </view>
+    <view class="input_box input_box_password">
+      <input value='{{smsCode}}' type='number' placeholder='填写验证码' bindinput="inputCodeNumber"/>
+      <button wx:if="{{nullClick}}" style='color:#eeeeee;background:#aaaaaa;' disabled="true">{{codeNumber}} s</button>
+      <button wx:else style="font-size:32rpx;background:#504c48;color:#ffffff;" disabled="{{nullClick}}" bindtap='getSmsCode'>获取</button>
+    </view>
+    <view class='form_btn_box'>
+      <button class='form_btn' bindtap='submitLogin' loading="{{!isCanBack}}" disabled='{{!isCanBack}}' open-type="getUserInfo" bindgetuserinfo="getUserInfo">确 认</button>
+      <!-- <button bindtap='test'>测试</button> -->
+    </view>
+  </view>
+</view>

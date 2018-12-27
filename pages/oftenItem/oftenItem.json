@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "常用物品",
+  "backgroundColor": "#f4f4f4",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance": 60
+}

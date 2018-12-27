@@ -1,0 +1,17 @@
+<!-- orderStart.wxml -->
+<view class="container">
+  <textarea class='text_remark' placeholder-class=""
+  value="{{remark}}" 
+  placeholder="输入备注信息" 
+  maxlength="100" 
+  auto-focus="true" 
+  focus="true" 
+  auto-height="true"
+  adjust-position="true" 
+  bindblur="changeRemark" 
+  bindinput="changeRemark">
+  </textarea>
+  <view class='form_btn_box'>
+    <button class='form_btn' bindtap='backToIndex' disabled='{{!isCanBack}}'>确认</button>
+  </view>
+</view>

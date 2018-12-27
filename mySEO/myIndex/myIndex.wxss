@@ -1,0 +1,181 @@
+/* mySEO/myIndex/myIndex.wxss */
+@import "/utils/common.wxss";
+page{
+  background: #f4f4f4;
+}
+.container{
+  font-size: 16px;
+  color: #666666;
+  border-top: 1px solid #eeeeee;
+  background: #ffffff;
+}
+.head_box{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px 0;
+  background: #1e82d2;
+}
+.head_box .head_con{
+  width: 50%;
+  position: relative;
+}
+.head_box .head_left::after{
+  position: absolute;
+  top: 26%;
+  right: 0;
+  content: "";
+  height:60%;
+  width:1px;
+  background: #eeeeee;
+}
+.head_box .total{
+  font-size: 16px;
+  color: #ffffff;
+}
+.head_box .total text{
+  color: #73bff9;
+}
+.head_box .price{
+  font-size: 26px;
+  margin: 5px 0;
+  color: #ffffff;/*1e82d2*/
+}
+.head_box .price text{
+  font-size: 14px;
+  color: #ffffff;
+}
+.head_box .see_record{
+  font-size: 14px;
+  color: #ffffff;
+}
+.body_box{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #eeeeee;
+}
+.body_box .body_total{
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.body_box .body_total .body_head{
+  position: relative;
+  width:50%;
+  text-align: center;
+  color: #333333;
+}
+.body_box .body_total .body_head::after{
+  position: absolute;
+  top: -20%;
+  right: 0;
+  content: "";
+  height:140%;
+  width:1px;
+  background: #eeeeee;
+}
+.body_box .body_con{
+  position: relative;
+  width: 50%;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.body_box .con_1::after{
+  position: absolute;
+  top:10%;
+  right: 0;
+  content: "";
+  height:80%;
+  width:1px;
+  background: #eeeeee;
+}
+.body_box .body_con .show_box{
+  position: relative;
+  width: 50%;
+  text-align: center;
+  font-size: 12px;
+}
+.body_box .body_con .show_box_first::after{
+  position: absolute;
+  top: 26%;
+  right: 0;
+  content: "";
+  height:60%;
+  width:1px;
+  background: #eeeeee;
+}
+.body_box .body_con .show_box .show_price{
+  font-size: 16px;
+  color: #1e82d2;
+}
+.body_total .show_box_big{
+  width: 50%;
+  font-size:12px;
+  text-align: center;
+}
+.body_total .show_price{
+  font-size: 16px;
+  color: #1e82d2;
+}
+.menu{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 6px 6px;
+}
+.but_list{
+  width: 20%;
+  text-align: center;
+  padding: 10px 0;
+}
+.but_list image{
+  height: 46px;
+  width: 46px;
+}
+.but_list .but_tit{
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.but_list .button_type{
+  width: 100%;
+  padding: 0;
+  line-height: 1.5;
+  background: #ffffff;
+}
+.img_banner{
+  height: 60px;
+  width: 100%;
+  margin-top: 10px;
+}
+.words{
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #666666;
+  border-top: 0;
+}
+.words .words-title{
+  font-size: 16px;
+  color: #000000;
+  margin: 10px 0;
+}
+.words .words-cont{
+  line-height: 1.5;
+}

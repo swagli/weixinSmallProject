@@ -1,0 +1,98 @@
+<!--mySEO/myIndex/myIndex.wxml-->
+<view class="container">
+  <!-- 金额总览 -->
+  <view class='head_box'>
+    <view class='head_con head_left'>
+        <view class='total'>奖励金总额</view>
+        <view class='price' wx:if="{{customerAccountInfo.moneyRemain}}">{{customerAccountInfo.moneyRemain}}<text> 元</text></view>
+        <view class='price' wx:else>0.00<text> 元</text></view>
+        <view class='see_record' bindtap='openToSEOAccountRecord'>查看记录</view>
+    </view>
+    <view class='head_con head_right'>
+        <view class='total'>可提现余额</view>
+        <view class='price' wx:if="{{moneyRemain}}">{{moneyRemain}}<text> 元</text></view>
+        <view class='price' wx:else>0.00<text> 元</text></view>
+        <view class='see_record' bindtap='openToPutForward'>立即提现</view>
+    </view>
+  </view>
+  <!-- 金额详细 -->
+  <view class='body_box'>
+    <view class='body_total'>
+          <view class='body_head'>推广用户数 {{customerAccountInfo.numberCustomersSpread}} 人</view>
+          <view class='body_head'>推广配送员 {{customerAccountInfo.numberSendersSpread}} 人</view>
+    </view>
+    <view class='body_con con_1'>
+        <view class='show_box show_box_first'>
+          <view>首单奖励金</view>
+          <view class='show_price'>{{customerAccountInfo.customerFirstOrderRewardTotal}}</view>
+        </view>
+        <view class='show_box'>
+          <view>下单奖励金</view>
+          <view class='show_price'>{{customerAccountInfo.customerOrderRewardTotal}}</view>
+        </view>
+    </view>
+    <view class='body_con'>
+        <view class='show_box show_box_first'>
+          <view>首送奖励金</view>
+          <view class='show_price'>{{customerAccountInfo.senderFirstTaskRewardTotal}}</view>
+        </view>
+        <view class='show_box'>
+          <view>配送奖励金</view>
+          <view class='show_price'>{{customerAccountInfo.senderTaskRewardTotal}}</view>
+        </view>
+    </view>
+    <view class='body_total' wx:if="{{customerAccountInfo.numberBigCustomerSpread}}">
+        <view class='body_head'>推广大商户 {{customerAccountInfo.numberBigCustomerSpread}} 人</view>
+        <view class='show_box_big'>
+          <view>获得奖励金总额</view>
+          <view class='show_price'>{{customerAccountInfo.bigCustomerOrderRewardTotal}}</view>
+        </view>
+    </view>
+  </view>
+  <!-- 菜单导航 -->
+  <view class='menu'>
+      <view class='but_list' bindtap='QRcodeShare'>
+        <image src='/images/SEO/menu-share-code.png' mode='aspectFit'></image>
+        <view class='but_tit'>扫码分享</view>
+      </view>
+      <view class='but_list' bindtap='linkShare'>
+        <image src='/images/SEO/menu-share-link.png' mode='aspectFit'></image>
+        <button class='but_tit button_type' type='primary' open-type="share">链接分享</button>
+        <!-- <view class='but_tit'>链接分享</view> -->
+      </view>
+      <view class='but_list' bindtap='openToMySEORecord'>
+        <image src='/images/SEO/menu-record.png' mode='aspectFit'></image>
+        <view class='but_tit'>推广记录</view>
+      </view>
+      <view class='but_list' bindtap='openToSEOAccountRecord'>
+        <image src='/images/SEO/menu-detailed.png' mode='aspectFit'></image>
+        <view class='but_tit'>账户流水</view>
+      </view>
+      <view class='but_list' bindtap='openToPutForward'>
+        <image src='/images/SEO/menu-money.png' mode='aspectFit'></image>
+        <view class='but_tit'>余额提现</view>
+      </view>
+      <view class='but_list' bindtap='openToPutForward_record'>
+        <image src='/images/SEO/menu-money2.png' mode='aspectFit'></image>
+        <view class='but_tit'>提现记录</view>
+      </view>
+      <view class='but_list' bindtap='openToOther'>
+        <image src='/images/SEO/menu-more.png' mode='aspectFit'></image>
+        <view class='but_tit'>其他功能</view>
+      </view>
+  </view>
+  <image class='img_banner' src='{{showImg}}' mode ="aspectFit"></image>
+  <!-- 文字说明 -->
+  <view class='words'>
+    <view class='words-title'>奖励说明</view>
+    <view class='words-cont'>1、邀请好友注册用户，注册成功后并完成首单即可获得{{customerAccountInfo.customerFirstOrderReward}}元奖励金</view>
+    <view class='words-cont'>2、用户完成首单后，以后每次完成下单可获得{{customerAccountInfo.customerOrderReward}}元奖励金提成</view>
+    <view class='words-cont'>3、邀请好友注册配送员，注册成功后并完成首单配送即可获得{{customerAccountInfo.senderFirstTaskReward}}元奖励金</view>
+    <view class='words-cont'>4、配送员完成首单后，以后每次完成完成任务可获得{{customerAccountInfo.senderTaskReward}}元奖励金提成</view>
+    <view class='words-cont'>5、推广的大商户完成订单，每完成下单可获得{{customerAccountInfo.bigCustomerOrderReward}}元奖励金提成</view>
+    <view class='words-title'>提醒：</view>
+    <view class='words-cont'>获取的奖励可提现，不同区域奖励金额可能会有所不同，请以实际到账的金额为准。</view>
+    <view class='words-title'>备注：</view>
+    <view class='words-cont'>以上说明最终解释权归本公司所有。</view>
+  </view>
+</view>

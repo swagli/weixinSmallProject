@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的推广记录",
+  "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":60
+}

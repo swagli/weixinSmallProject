@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "余额充值账单",
+  "backgroundColor": "#ffffff",
+  "usingComponents": {
+    "model": "/components/model-pay"
+  }
+}

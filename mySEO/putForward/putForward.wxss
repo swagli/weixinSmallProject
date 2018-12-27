@@ -1,0 +1,88 @@
+/* mySEO/putForward/putForward.wxss */
+@import "/utils/common.wxss";
+page{
+  background: #ffffff;
+}
+.container{
+  font-size: 16px;
+  color: #666666;
+  border-top: 1px solid #eeeeee;
+  background: #ffffff;
+}
+.head_box{
+  padding: 10px 12px;
+  color: #ffffff;
+  background: #1e82d2;
+}
+.head_box .explain{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.head_box .explain .title{
+  font-size: 20px;
+}
+.head_box .balance{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+}
+.head_box .balance .total{
+  margin-right: 20px;
+}
+.head_box .balance .price{
+  font-size: 20px;
+}
+.head_box .balance .price text{
+  font-size: 14px;
+}
+.main_box{
+  padding: 10px 12px;
+}
+.put_box{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  padding: 10px 0;
+  color: #000000;
+  border-bottom:1px solid #eeeeee;
+}
+.put_box .put_title{
+  width: 25%;
+}
+.put_box .put_inp{
+  width: 75%;
+}
+.put_forward_box .explain{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:6px 0;
+  font-size: 14px;
+}
+.put_forward_box .explain .all_put{
+  color: #1e82d2;
+}
+.balance_put{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  color: #333333;
+  padding: 2px 0 6px 0;
+  border-bottom:1px solid #eeeeee;
+}
+.balance_put .put_title{
+  font-size: 26px;
+  margin-right: 10px;
+}
+.balance_put .put_inp{
+  font-size: 24px;
+  color: #000000;
+}
+.balance_put .put_inp_pla{
+  font-size: 16px;
+}

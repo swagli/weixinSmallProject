@@ -1,0 +1,108 @@
+<!--pages/orderDetaile/orderDetaile.wxml-->
+<view class="container">
+  <view class='order_head'>
+    <view class='head_data head_number'>
+      <text class='order_id_tit'>订单序号</text>
+      <text class='order_id_con'>{{orderArr.id}}</text>
+    </view>
+    <view class='head_data'>
+      <text>订单状态</text>
+      <text class='task_status'>{{orderArr.orderStatus}}</text>
+    </view>
+    <view class='head_data'>
+      <text>支付类型</text>
+      <text wx:if="{{orderArr.payMode == 'ImmediatePay'}}">立即支付</text>
+      <text class='task_status' wx:elif="{{orderArr.payMode == 'ArrivalPay'}}">货到付款</text>
+      <text wx:else>未知类型</text>
+    </view>
+    <view class='head_data'>
+      <text>支付状态</text>
+      <text wx:if="{{orderArr.payStatus == 'Paid'}}">已支付</text>
+      <text class='task_status' wx:else>未支付</text>
+    </view>
+    <view class='head_data'>
+      <text>订单类型</text>
+      <text>{{orderArr.orderType}}</text>
+    </view>
+    <view class='head_data'>
+      <text>总配送费</text>
+      <text>{{orderArr.price}}元</text>
+    </view>
+  </view>
+
+  <view wx:if="{{orderArr.senderName && orderArr.senderPhonenumber}}">
+    <view class='title'>配送信息</view>
+    <view class='order_sender'>
+      <image class='sender_logo' src='../images/yks-sender.png' mode='aspectFit'></image>
+      <image class='sender_phone' src='../images/icon_phone.png' mode='aspectFit' data-sendexnumber="{{orderArr.senderPhonenumber}}" bindtap='callTosender'></image>
+      <view class='sender_info'>
+        <view>配送人员:<text>{{orderArr.senderName}}</text></view>
+        <view class='phonenumber'>手机号码:<view class='sender_number'>{{orderArr.senderPhonenumber}}</view></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='title'>发件信息</view>
+  <view class='order_info'>
+    <view class='location_info'>
+      <text class='location_tit'>发件地址</text>
+      <text class='location_con'>{{orderArr.starter.addressName}}{{orderArr.starter.addressDetail}}{{orderArr.starter.poiName}}</text>
+    </view>
+    <view class='other_con'>
+      <text class='location_con'>{{orderArr.starter.name}} {{orderArr.starter.phonenumber}}</text>
+    </view>
+  </view>
+  <view class='title'>收件信息</view>
+  <view class='order_info'>
+    <view class='location_info'>
+      <text class='location_tit'>收件地址</text>
+      <text class='location_con'>{{orderArr.receiver.addressName}}{{orderArr.receiver.addressDetail}}{{orderArr.receiver.poiName}}</text>
+    </view>
+    <view class='other_con'>
+      <text class='location_con'>{{orderArr.receiver.name}} {{orderArr.receiver.phonenumber}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>收货物品</text>
+      <text class='location_con'>{{orderArr.item.type}} ({{orderArr.item.name}})</text>
+    </view>
+    <view class='other_con'>
+        <text>{{orderArr.item.size}} {{orderArr.vehicle}} {{orderArr.item.weight}} kg</text>
+    </view>
+  </view>
+  <view class='order_info time_info'>
+    <view wx:if="{{orderArr.orderType == '预约'||orderArr.orderType == '高级预约'}}">
+      <view class='location_info' wx:if="{{orderArr.fetchTime}}">
+        <text class='location_tit'>预约取件时间</text>
+        <text class='location_con'>{{orderArr.fetchTime}}</text>
+      </view>
+      <view class='location_info' wx:if="{{orderArr.sendTime}}">
+        <text class='location_tit'>预约送件时间</text>
+        <text class='location_con'>{{orderArr.sendTime}}</text>
+      </view>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>创建时间</text>
+      <text class='location_con'>{{orderArr.createTime}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>付款时间</text>
+      <text class='location_con'>{{orderArr.payTime}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>接单时间</text>
+      <text class='location_con'>{{orderArr.accpetTime}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>取件时间</text>
+      <text class='location_con'>{{orderArr.fetchedTime}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>送达时间</text>
+      <text class='location_con'>{{orderArr.sentTime}}</text>
+    </view>
+    <view class='location_info'>
+      <text class='location_tit'>配送费用</text>
+      <text class='location_con'>距离 {{orderArr.distance}} km 配送费 {{orderArr.price}} 元</text>
+    </view>
+  </view>
+</view>

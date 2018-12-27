@@ -1,0 +1,30 @@
+/* mySEO/shareToLink/shareToLink.wxss */
+page{
+  background: #f4f4f4;
+}
+.img_banner{
+  height: 60px;
+  width: 100%;
+  margin-top: 16px;
+}
+.container{
+  margin:8px 12px;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #ffffff;
+}
+.container .code_title{
+  margin-top: 10px;
+}
+.container .img_code{
+  margin:20px 0;
+}
+.container .code_back{
+  width: 100%;
+  margin:20px 0;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-around;
+}

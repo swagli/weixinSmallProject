@@ -1,0 +1,7 @@
+<!--mySEO/openUpCityList/openUpCityList.wxml-->
+<view class="container">
+  <view class='title'>可选择城市</view>
+  <view class='city_box'>
+    <view class='city_list' wx:for="{{cityList}}" wx:key="{{index}}" data-items='{{item}}' bindtap='chooseClickCity'>{{item.city}}</view>
+  </view>
+</view>

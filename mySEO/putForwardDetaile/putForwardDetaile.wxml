@@ -1,0 +1,58 @@
+<!--pages/orderDetaile/orderDetaile.wxml-->
+<view class="container">
+  <view class='order_head'>
+    <view class='head_data'>
+      <text>申请类型</text>
+      <text>奖励金提现</text>
+    </view>
+    <view class='head_data'>
+      <text>申请状态</text>
+      <text class='task_status' wx:if="{{orderArr.drawStatus=='JUST_CREATED'}}">审核中</text>
+      <text class='task_status' wx:elif="{{orderArr.drawStatus=='APPROVED'}}">已放款</text>
+      <text class='task_status' wx:elif="{{orderArr.drawStatus=='REJECTED'}}">已拒绝</text>
+      <text class='task_status' wx:else>未知状态</text>
+    </view>
+    
+    <view class='head_data'>
+      <text>申请金额</text>
+      <text>{{orderArr.amount}}元</text>
+    </view>
+  </view>
+
+  <!-- <view class='title'>提现账号</view> -->
+  <view class='drawInfo'>
+    <view class='location_info'>
+      <text class='location_tit'>{{orderArr.drawInfo}}</text>
+    </view>
+  </view>
+  <!-- <view class='title'>处理时间</view> -->
+  <view class='order_info time_info'>
+    <view class='location_info'>
+      <text class='location_tit'>申请时间</text>
+      <text class='location_con'>{{orderArr.createTime}}</text>
+    </view>
+    <view class='location_info' wx:if="{{orderArr.acceptTime}}">
+      <text class='location_tit'>放款时间</text>
+      <text class='location_con'>{{orderArr.acceptTime}}</text>
+    </view>
+    <view class='location_info' wx:if="{{orderArr.operatorName}}">
+      <text class='location_tit'>操作人员</text>
+      <text class='location_con'>{{orderArr.operatorName}}</text>
+    </view>
+    <view wx:if="{{orderArr.fetchedTime}}">
+      <view class='location_info'>
+        <text class='location_tit'>拒绝时间</text>
+        <text class='location_con'>{{orderArr.fetchedTime}}</text>
+      </view>
+      <view class='location_info'>
+        <text class='location_tit'>拒绝理由</text>
+        <text class='location_con' wx:if="{{orderArr.rejectReason}}">{{orderArr.rejectReason}}</text>
+        <text class='location_con' wx:else>不符合放款条件,请核实。</text>
+      </view>
+    </view>
+    
+  </view>
+  <view class='form_btn_box'>
+    <button class='form_btn' bindtap='backToback' disabled='{{!isCanBack}}'>返回</button>
+  </view>
+</view>
